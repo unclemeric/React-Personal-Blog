@@ -17,7 +17,7 @@ const node_modules = path.resolve(__dirname, 'node_modules');
 
 const Config = {
     entry: {
-        bundle:path.resolve(__dirname, `${_BASE_}/entry.js`)
+        bundle:path.resolve(__dirname, `${_BASE_}/index.js`)
     },
     output:{
         path:output_path,
