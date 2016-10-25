@@ -3,23 +3,26 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import PageHeader from './component/PageHeader';
 
 class App extends React.Component {
 	render() {
 		return (
 			<div>
-				hello
+				{this.props.children}
 			</div>
 		);
 	}
 }
 
-const  n  = document.getElementById('app');
+const element = document.getElementById('app');
 
 render(
 	<Router history={hashHistory}>
-		<Route path="/" component={p} />
+		<Route path="/" component={App}>
+			<IndexRoute component={PageHeader} />
+		</Route>
 	</Router>,
 	element
 );
