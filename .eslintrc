@@ -1,0 +1,28 @@
+{
+  "extends": "airbnb",
+  "globals": {
+    "__DEV__": true,
+    "document": true
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "react/jsx-quotes": 0,
+    "react/prefer-stateless-function": 0,
+    "no-useless-constructor": 0,
+    "react/jsx-filename-extension": 0,//关闭react只能使用.jsx为后缀规则
+//    "no-unused-vars": 0,
+    "no-undef":0,
+    "react/no-string-refs":0,
+    "react/jsx-indent": 0,//关闭jsx的indent规则限制
+    "jsx-quotes": [2, "prefer-double"],//设置jsx使用双引号
+    "indent": 0,
+    "linebreak-style":0,
+    "no-tabs":0,
+    "no-mixed-spaces-and-tabs":0,
+    "react/forbid-prop-types":0,
+    "arrow-body-style":0
+  }
+}
