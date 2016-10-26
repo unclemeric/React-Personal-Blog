@@ -2,14 +2,15 @@
  * Created by Administrator on 2016/10/25 0025.
  */
 import React from 'react';
+import { Link } from 'react-router';
 import './style.scss';
 
 const NavDatas = [
-    { href: 'about.html', text: 'Home' },
-    { href: 'about.html', text: 'ABOUT' },
-    { href: 'about.html', text: 'PHOTOS' },
-    { href: 'about.html', text: 'ARCHIVES' },
-    { href: 'about.html', text: 'CONTACT' },
+    { href: '/', text: 'Home' },
+    { href: '/nav', text: 'ABOUT' },
+    { href: '/header', text: 'PHOTOS' },
+    { href: '/', text: 'ARCHIVES' },
+    { href: '/', text: 'CONTACT' },
 ];
 
 class HeaderNav extends React.Component {
@@ -18,10 +19,10 @@ class HeaderNav extends React.Component {
             <div className="header-nav">
                 <ul className="cl-effect-15">
                     {
-                        NavDatas.map((item, index) => {
+                        NavDatas.map((item) => {
                             return (
-                                <li className={index === 0 ? 'active' : null}>
-                                    <a href={item.href} data-hover={item.text}>{item.text}</a>
+                                <li>
+                                    <Link to={item.href} activeStyle={{ color: '#fff' }} onlyActiveOnIndex>{item.text}</Link>
                                 </li>
                             );
                         })

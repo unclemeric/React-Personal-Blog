@@ -73,6 +73,9 @@ const Config = {
         }),
         new CopyWebpackPlugin([{
             from: `${_BASE_}/static/css/amazeui.min.css`,to:`${output_path}/css`
+        },
+        {
+            from: `${_BASE_}/static/fonts/fontawesome-webfont.woff2`,to:`${output_path}/fonts/fontawesome-webfont.woff2`
         }]),
         /* 公共库 */
         new webpack.optimize.CommonsChunkPlugin({
