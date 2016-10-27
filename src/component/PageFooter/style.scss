@@ -1,0 +1,23 @@
+.footer-default {
+  background: transparent;
+  padding: 2em 0px;
+  text-align: center;
+  font-size: 1.6rem;
+  display: block;
+  .footer-content {
+    color: #999;
+    font-size: 13px;
+  }
+  p {
+    margin: 5px 0;
+    a {
+      color:inherit;
+    }
+  }
+  @media only screen and (min-width: 641px) {
+    p {
+      display: inline-block;
+      margin: 5px;
+    }
+  }
+}

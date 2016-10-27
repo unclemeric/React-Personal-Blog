@@ -6,11 +6,11 @@ import { Link } from 'react-router';
 import './style.scss';
 
 const NavDatas = [
-    { href: '/', text: 'Home' },
-    { href: '/nav', text: 'ABOUT' },
-    { href: '/header', text: 'PHOTOS' },
-    { href: '/', text: 'ARCHIVES' },
-    { href: '/', text: 'CONTACT' },
+    { href: '/', text: '首页' },
+    { href: '/articles', text: '文章' },
+    { href: '/notes', text: '笔记' },
+    { href: '/profile', text: '个人简介' },
+    { href: '/feedback', text: '留言' },
 ];
 
 class HeaderNav extends React.Component {

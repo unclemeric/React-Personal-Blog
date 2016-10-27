@@ -1,9 +1,9 @@
 /**
- * Created by Meric on 2016/10/26.
+ * Created by Meric on 2016/10/27.
  */
 import React from 'react';
-import { ListNews, Panel, Titlebar } from 'amazeui-react';
-import ConnectMe from '../../ConnectMe';
+import { ListNews, Titlebar } from 'amazeui-react';
+import ConnectMe from '../ConnectMe';
 import './style.scss';
 
 const data = {
@@ -131,32 +131,14 @@ const data = {
 	],
 };
 
-class IndexContent extends React.Component {
+class Notes extends React.Component {
 	render() {
 		return (
-			<div>
+			<div className="main-container">
 				<div className="left-container">
-					<ListNews style={{ background: 'transparent' }} header={<Titlebar title="推荐列表" />} data={data} />
+					<ListNews style={{ background: 'transparent' }} header={<Titlebar title="笔记列表" />} data={data} />
 				</div>
 				<div className="right-container">
-					<Panel header="最新文章">
-						<ul>
-							<li><a>文章文章文章文章文章文章</a></li>
-							<li><a>文章文章文章文章文章文章</a></li>
-							<li><a>文章文章文章文章文章文章</a></li>
-							<li><a>文章文章文章文章文章文章</a></li>
-							<li><a>文章文章文章文章文章文章</a></li>
-						</ul>
-					</Panel>
-					<Panel header="最新留言">
-						<ul>
-							<li><a>淡定：最新留言最新留言最新留言</a></li>
-							<li><a>淡定：最新留言最新留言最新留言</a></li>
-							<li><a>淡定：最新留言最新留言最新留言</a></li>
-							<li><a>淡定：最新留言最新留言最新留言</a></li>
-							<li><a>淡定：最新留言最新留言最新留言</a></li>
-						</ul>
-					</Panel>
 					<ConnectMe />
 				</div>
 			</div>
@@ -164,4 +146,4 @@ class IndexContent extends React.Component {
 	}
 }
 
-export default IndexContent;
+export default Notes;

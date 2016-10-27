@@ -4,10 +4,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import { GoTop, Footer } from 'amazeui-react';
+import { GoTop, Icon } from 'amazeui-react';
+import Footer from './component/PageFooter';
 import PageIndex from './component/PageIndex';
 import PageHeader from './component/PageHeader';
-import HeaderNav from './component/PageHeader/HeaderNav';
+import Articles from './component/Articles';
+import Notes from './component/Notes';
 
 class App extends React.Component {
 	render() {
@@ -18,12 +20,9 @@ class App extends React.Component {
 					{this.props.children}
 				</div>
 				<GoTop theme="fixed" autoHide icon="arrow-up" />
-				<Footer style={{ background: 'transparent', padding: '2em 0' }}>
-					<p>由
-						<a href="http://www.yunshipei.com/" rel="noopener noreferrer" title="诺亚方舟" target="_blank">诺亚方舟</a>提供技术支持
-					</p>
-					<p>CopyRight©2014 AllMobilize Inc.</p>
-					<p>京ICP备13033158</p>
+				<Footer>
+					<p><Icon button href="https://github.com/unclemeric" icon="github" /></p>
+					<p>2016-2017</p>
 				</Footer>
 			</div>
 		);
@@ -36,7 +35,10 @@ render(
 			<Route path="/" component={App}>
 				<IndexRoute component={PageIndex} />
 				<Route path="header" component={PageHeader} />
-				<Route path="nav" component={HeaderNav} />
+				<Route path="articles" component={Articles} />
+				<Route path="notes" component={Notes} />
+				<Route path="profile" component={Articles} />
+				<Route path="feedback" component={Articles} />
 			</Route>
 		</Router>,
 	element
