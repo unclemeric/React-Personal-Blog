@@ -10,8 +10,13 @@ import PageIndex from './component/PageIndex';
 import PageHeader from './component/PageHeader';
 import Articles from './component/Articles';
 import Notes from './component/Notes';
+import Profile from './component/Profile';
+import FeedBack from './component/FeedBack';
 
 class App extends React.Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		return (
 			<div>
@@ -37,8 +42,8 @@ render(
 				<Route path="header" component={PageHeader} />
 				<Route path="articles" component={Articles} />
 				<Route path="notes" component={Notes} />
-				<Route path="profile" component={Articles} />
-				<Route path="feedback" component={Articles} />
+				<Route path="profile" component={Profile} />
+				<Route path="feedback" component={FeedBack} />
 			</Route>
 		</Router>,
 	element

@@ -1,0 +1,18 @@
+@import url('../../static/css/base.scss');
+.content {
+  //width: 100%;
+  //max-width: 1920px;
+  //margin: 0;
+  .profile {
+    height: 700px;
+    //background: url("../../static/images/bg.jpg") no-repeat;
+    //background-size: cover;
+    color:#666;
+    //position: relative;
+    //top:-2em;
+  }
+  .profile-mask {
+    width: 100%;
+    height: 100%;
+  }
+}
