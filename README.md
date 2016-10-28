@@ -35,3 +35,8 @@ ps：由于第一次使用，还有很多规则没有写到，没写到的可以
 markdown编辑器(react-md-editor)：markdown语法的编辑器，无法上传图片，要实现需把图片上传到服务器在引用服务器的图片地址
 markdown转义成HTML(markdown):markdown.parse(markdown语法字符串)(本项目没用到)
 ```
+#LINUX环境注意
+```
+set NODE_ENV = production是window的写法  在linux环境下面需写成export NODE = production
+例如在Linux环境下用pm2启动export NODE = production && pm2 start app.js
+```
