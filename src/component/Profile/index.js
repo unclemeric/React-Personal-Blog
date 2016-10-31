@@ -18,25 +18,32 @@ export default class Profile extends React.Component {
 		return age;
 	}
 	render() {
+		const mailTo = 'mailto:'.concat(Config.profile.email);
 		return (
 			<div className="profile">
 				<div className="profile_left">
-					<h3>UncleMeric</h3>
 					<img src={header} alt="" style={{ display: 'inline-block' }} />
+					<h3>{Config.profile.showEnName ? Config.profile.enName : Config.profile.userName}</h3>
 					<div>
 						<i className="person_i">{this.getAge()}岁</i>
 					</div>
 					<div>
-						<i className="home_i">{Config.profile.home}</i>
+						<i className="home_i" target="_self">
+							<a href={Config.profile.home}>{Config.profile.home}</a>
+						</i>
 					</div>
 					<div>
 						<i className="place_i">{Config.profile.place}</i>
 					</div>
 					<div>
-						<i className="email_i">{Config.profile.email}</i>
+						<i className="email_i">
+							<a href={mailTo}>{Config.profile.email}</a>
+						</i>
 					</div>
 					<div>
-						<i className="github_i">{Config.profile.gitHub}</i>
+						<i className="github_i" target="_self">
+							<a href={Config.profile.gitHub}>{Config.profile.gitHub}</a>
+						</i>
 					</div>
 					<div>
 						<i className="qq_i">{Config.profile.qq}</i>

@@ -4,6 +4,9 @@
 const Config = {
 	api_host: 'localhost',
 	profile: {
+		showEnName: true,
+		enName: 'MericLai',
+		userName: '赖三发',
 		home: 'http://unclemeric.cn/',
 		place: '佛山市',
 		email: 'unclemeric@163.com',

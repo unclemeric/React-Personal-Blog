@@ -10,7 +10,7 @@
     padding: 50px;
     //background: url("../../static/images/bg.jpg") no-repeat;
     //background-size: cover;
-    color:#666;
+    color:#333;
     //position: relative;
     //top:-2em;
     .profile_left {
@@ -21,6 +21,15 @@
         display: block;
         height: 30px;
         padding-left: 35px;
+        a {
+          color: #333;
+          transition: all .3s ease;
+          -webkit-transition: all .3s ease;
+          -moz-transition: all .3s ease;
+        }
+        a:hover {
+          color: #afafaf;
+        }
       }
       .person_i {
         background: url("../../static/images/profile_ico_b.png") no-repeat -12px -3px;
