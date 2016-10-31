@@ -4,15 +4,47 @@
   //max-width: 1920px;
   //margin: 0;
   .profile {
-    height: 700px;
+    position: relative;
+    top: -32px;
+    height: 500px;
+    padding: 50px;
     //background: url("../../static/images/bg.jpg") no-repeat;
     //background-size: cover;
     color:#666;
     //position: relative;
     //top:-2em;
-  }
-  .profile-mask {
-    width: 100%;
-    height: 100%;
+    .profile_left {
+      float: left;
+      display: inline-block;
+      width: 280px;
+      i {
+        display: block;
+        height: 30px;
+        padding-left: 35px;
+      }
+      .person_i {
+        background: url("../../static/images/profile_ico_b.png") no-repeat -12px -3px;
+      }
+      .home_i {
+        background: url("../../static/images/profile_ico_b.png") no-repeat -15px -183px;
+      }
+      .place_i {
+        background: url("../../static/images/profile_ico_b.png") no-repeat -15px -37px;
+      }
+      .email_i {
+        background: url("../../static/images/profile_ico_b.png") no-repeat -15px -104px;
+      }
+      .github_i {
+        background: url("../../static/images/profile_ico_b.png") no-repeat -15px -143px;
+      }
+      .qq_i {
+        background: url("../../static/images/profile_ico_b.png") no-repeat -15px -73px;
+      }
+    }
+    .profile_right {
+      display: inline-block;
+      width: 680px;
+      float: right;
+    }
   }
 }
