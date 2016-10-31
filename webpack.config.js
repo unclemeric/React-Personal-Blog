@@ -58,7 +58,7 @@ const Config = {
         new CleanPlugin(['dist']),
         new ExtractTextPlugin(`${output_path}/main.css`,{ allChunks: true, disable: false }),//可以将所有css文件打包到一个css文件中
         new HtmlWebpackPlugin({
-            title: 'your app title',
+            title: 'Meric的博客',
             template: `${_BASE_}/index.html`,
             inject: 'body',
             hash: true,
