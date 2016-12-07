@@ -70,18 +70,18 @@
     \---utils                                                           工具类
             autoChange.js                                               
 ```
-##说明
+##project说明
 ```
-本项目没有热加载
 安装全局webpack webpack-dev-server
-window环境下
-"deploy-dev": "set NODE_ENV=development&&webpack -p --progress --colors",                                           //在根目录生成/build文件夹和编译后的文件
-"deploy-dev-server": "set NODE_ENV=development&&webpack-dev-server --progress --colors --port 3000",                //执行deploy-dev-server,等待编译完之后 在浏览器访问:http://localhost:3000
-"deploy-server": "set NODE_ENV=production&&webpack-dev-server --progress --colors --port 80"                        //执行deploy-dev-server,等待编译完之后 在浏览器访问:http://localhost
-linux环境下
-"deploy-dev": "export NODE_ENV=development&&webpack -p --progress --colors",                                           //在根目录生成/build文件夹和编译后的文件
-"deploy-dev-server": "export NODE_ENV=development&&webpack-dev-server --progress --colors --port 3000",                //执行deploy-dev-server,等待编译完之后 在浏览器访问:http://localhost:3000
-"deploy-server": "export NODE_ENV=production&&webpack-dev-server --progress --colors --port 80"                        //执行deploy-dev-server,等待编译完之后 在浏览器访问:http://localhost
+"deploy-dev": "webpack --progress --colors",                                           //在根目录生成/build文件夹和编译后的文件
+"deploy-dev-server": "webpack-dev-server --config webpack.config.dev.js --progress --colors",                //执行deploy-dev-server,等待编译完之后 在浏览器访问:http://localhost:3000 有热加载功能 适用于开发
+"deploy-server": "webpack --config webpack.config.js --progress --colors&&nodemon app.js"                        //执行deploy-server,等待编译完之后 在浏览器访问:http://localhost
+相关配置请看config文件
+```
+##webpack配置文件说明
+```
+webpack.config.js：用于生产环境编译文件。
+webpack.config.dev.js：用于开发阶段编译文件。修改react文件之后会自动编译  不需要手动编译
 ```
 ##功能
 ***markdown文本编辑功能***
@@ -91,14 +91,17 @@ linux环境下
 作用：为避免低级 Bug、产出风格统一的代码，会预先制定编码规范。使用 Lint 工具和代码风格检测工具，则可以辅助编码规范执行，有效控制代码质量。
 
 ps：由于第一次使用，还有很多规则没有写到，没写到的可以自己在.eslintrc配置文件增加。eslint会使在编写代码的时候会遇到很多问题...头疼，但是使用这个能是代码更规范！
-```
-#plugins
-```
-markdown编辑器(react-md-editor)：markdown语法的编辑器，无法上传图片，要实现需把图片上传到服务器在引用服务器的图片地址
-markdown转义成HTML(markdown):markdown.parse(markdown语法字符串)(本项目没用到)
-```
-#LINUX环境注意
-```
-set NODE_ENV = production是window的写法  在linux环境下面需写成export NODE = production
-例如在Linux环境下用pm2启动export NODE = production && pm2 start app.js
+不需要的可以在webpack配置文件里面去掉下面两个配置：
+preLoaders: [
+  {
+    // Eslint loader
+    test: /\.js?$/,
+    loader: 'eslint-loader',
+    include: [path.resolve(__dirname, 'src')],
+    exclude: [/node_modules/,path.resolve(__dirname, 'src/utils')],
+  },
+],
+eslint: {
+  configFile: '.eslintrc',
+},
 ```

@@ -19,9 +19,9 @@ class HeaderNav extends React.Component {
             <div className="header-nav">
                 <ul className="cl-effect-15">
                     {
-                        NavDatas.map((item) => {
+                        NavDatas.map((item, i) => {
                             return (
-                                <li>
+                                <li key={i}>
                                     <Link to={item.href} activeStyle={{ color: '#fff' }} onlyActiveOnIndex>{item.text}</Link>
                                 </li>
                             );
