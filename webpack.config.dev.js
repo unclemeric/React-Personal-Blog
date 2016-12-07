@@ -60,7 +60,7 @@ const Config = {
         new webpack.NoErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            title: 'your app title',
+            title: 'Meric的博客',
             template: './src/index-dev.html',
             inject:'body',
             hash:true,
