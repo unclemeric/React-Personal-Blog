@@ -6,13 +6,10 @@ var app = express();
 var path = require('path');
 var config = require('./config')
 
-var isDev = process.env.NODE_ENV !== 'production';
-var path_page = isDev ? 'build' : 'dist';
-
-app.use(express.static(path.resolve(__dirname,`./${path_page}`)));
+app.use(express.static(path.resolve(__dirname,config.staticPath)));
 
 app.use('/',function (req,res) {
-	res.sendFile(path.resolve(`${path_page}/index.html`));
+	res.sendFile(path.resolve(config.entryHtml));
 });
 app.listen(config.port,function (req,res,error) {
 	if(error){

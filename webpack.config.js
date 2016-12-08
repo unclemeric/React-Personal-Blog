@@ -39,7 +39,8 @@ const Config = {
             },
         ],
         loaders:[
-            { test: /\.js?$/, loader: 'babel-loader', exclude: /node_modules/, query: { presets: ['react','es2015','stage-0'] } },
+            { test: /\.js?$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['react','es2015','stage-0'] } },
+            { test: /\.json$/, loader: 'json'},
             { test:/\.css$/, include: path.resolve(__dirname, _BASE_), loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
             { test: /\.scss$/, include: path.resolve(__dirname, _BASE_), loader: 'style!css!sass?sourceMap' },
             { test: /\.(png|jpg|gif|ico)$/, loader:`url?limit=8192&name=images/[hash].[ext]` },
@@ -51,11 +52,6 @@ const Config = {
         extensions:['','.js','.jsx']
     },
     plugins:[
-        new webpack.DefinePlugin({
-            'process.env':{
-                'NODE_ENV': "'production'"
-            }
-        }),//查找相等或近似的模块，避免在最终生成的文件中出现重复的模块，比如可以用它去除依赖中重复的插件
         new webpack.NoErrorsPlugin(),//打包时不会因为错误而中断
         new CleanPlugin(['dist']),
         new ExtractTextPlugin(`${output_path}/main.css`,{ allChunks: true, disable: false }),//可以将所有css文件打包到一个css文件中
@@ -66,22 +62,25 @@ const Config = {
             hash: true,
             favicon: icon_path,
             minify: {
-                removeComments: !_DEV_,//移除注释
-                collapseWhitespace: !_DEV_
+                removeComments: true,//移除注释
+                collapseWhitespace: true
             },
             files: {
                 "css": ["main.css"],
             }
         }),
         new CopyWebpackPlugin([{
-            from: `${_BASE_}/static/css/amazeui.min.css`,to:`${output_path}/css`
+            from: `${_BASE_}/static/css/amazeui.min.css`, to: `${output_path}/css`
+        },
+        {
+            from: `${_BASE_}/static/fonts/fontawesome-webfont.woff2`,to:`${output_path}/fonts/fontawesome-webfont.woff2`
         }]),
         /* 公共库 */
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
             minChunks: Infinity
         }),
-        //可以减少重复文件数
+        //查找相等或近似的模块，避免在最终生成的文件中出现重复的模块，比如可以用它去除依赖中重复的插件
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("production")
