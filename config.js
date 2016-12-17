@@ -3,6 +3,19 @@
  */
 module.exports = {
 	port: 80,
-	staticPath: './dist',
-	entryHtml: './dist/index.html'
+	staticPath: './build',
+	projectConf:[
+		{
+			title:'Meric的博客',
+			filename:'home.html',
+			entryPath:'./src/index.js',
+			path:'/'
+		},
+		{
+            title:'MarkDown编辑器Demo',
+			filename:'markdown.html',
+            entryPath:'./src/entry.js',
+			path:'/markdown'
+		}
+	]
 }

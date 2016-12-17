@@ -4,7 +4,7 @@ import { Button } from 'amazeui-react';
 import marked from 'marked';
 import Editor from 'react-md-editor';
 
-import image from './static/images/20161023223233.png';
+import image from './static/images/logo.png';
 import './static/scss/index.scss';
 // import Button from './component/Button/Button';
 

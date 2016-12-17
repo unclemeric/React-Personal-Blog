@@ -7,6 +7,7 @@
 |   .eslintrc                                                           eslint配置文件
 |   .gitignore                                                          github忽略提交文件配置
 |   app.js                                                              服务启动入口
+|   appMultiplePage.js                                                  多页面服务启动入口
 |   config.js                                                           项目服务配置文件
 |   favicon.ico                                                         网站图标
 |   MarkdownEditor                                                      Markdown编辑器说明
@@ -14,6 +15,8 @@
 |   ReactMarkdown.md                                                    ReactMarkdown说明文件
 |   README.md                                                           项目说明文件
 |   webpack.config.js                                                   webpack配置文件
+|   webpack.config.dev                                                  webpack热加载配置文件
+|   webpack.config.dev.multiplepage.js                                  webpack多页面配置文件
 \---src                                                                 view层文件存放目录
     |   entry.js                                                        之前使用的入口文件，现在不用了
     |   index.html                                                      页面模板文件
@@ -104,4 +107,14 @@ preLoaders: [
 eslint: {
   configFile: '.eslintrc',
 },
+```
+
+###关于appMultiplePage.js和webpack.config.dev.multiplepage.js的说明
+```
+appMultiplePage.js：一个react多页面的服务启动入口js，根据配置文件的projectConf配置生成路由服务，结合react热加载，不需要手动重新编译，但是需要手动刷新页面。
+webpack.config.dev.multiplepage.js：根据配置(config.js)自动生成多个页面的webpack配置文件
+
+多页面启动方式：
+先执行webpack --config webpack.config.dev.multiplepage.js --progress --color 编译项目，再启动多页面服务nodemon appMultiplePage.js
+或者执行script脚本npm run multiple-page-build再执行npm run nodemon appMultiplePage.js
 ```
