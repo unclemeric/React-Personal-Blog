@@ -6,10 +6,11 @@ var app = express();
 var path = require('path');
 var config = require('./config')
 
-app.use(express.static(path.resolve(__dirname,config.staticPath)));
+var dist = "./dist";
+app.use(express.static(path.resolve(dist)));
 
 app.use('/',function (req,res) {
-	res.sendFile(path.resolve(config.entryHtml));
+	res.sendFile(path.resolve(dist+"/index.html"));
 });
 app.listen(config.port,function (req,res,error) {
 	if(error){
