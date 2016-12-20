@@ -14,7 +14,7 @@ const output_path = path.resolve(__dirname, "./build");
 
 const configs = {
     entry: {
-        vender: ['webpack/hot/dev-server', 'webpack-hot-middleware/client'], // 额外插件打包成vender
+        vender: ['webpack/hot/dev-server', 'webpack-hot-middleware/client','lodash'], // 额外插件打包成vender
         // index: './src/index.js',
         // entry: './src/entry.js'
     },
@@ -37,6 +37,13 @@ const configs = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"'}),
+        //把公用的lodashjs打包到公共的js里面
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vender",
+            minChunks: Infinity,
+        }),
+        new webpack.ProvidePlugin({'_': "lodash"}),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -56,7 +63,7 @@ pageConfig.forEach(function (conf) {
         filename: conf.filename,
         template: './src/index.html',
         inject:'body',
-        chunks:['vendor', conf.filename],
+        chunks:['vender', conf.filename],
         hash:true,
     }));
 })

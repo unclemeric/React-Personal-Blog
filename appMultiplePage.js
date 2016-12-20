@@ -15,7 +15,10 @@ var compiler = webpack(webpackConfig);
 // 引入webpack组件
 app.use(webpackHotMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    stats: { webpackConfig: true }
+    stats: {
+        colors: true,
+    },
+    quiet: true,
 }));
 app.use(webpackDevMiddleware(compiler));
 app.use(express.static(path.resolve(__dirname,config.staticPath)));
