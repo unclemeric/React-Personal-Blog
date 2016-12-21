@@ -26,7 +26,7 @@ app.use(express.static(path.resolve(__dirname,config.staticPath)));
 //路由服务
 (config.projectConf||[]).forEach(function (conf) {
         router.get(conf.path, function(req, res){
-            res.sendfile(path.resolve(config.staticPath,conf.filename));
+            res.sendFile(path.resolve(config.staticPath,conf.filename));
         });
     // }
 });
