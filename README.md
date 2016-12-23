@@ -118,3 +118,10 @@ webpack.config.dev.multiplepage.js：根据配置(config.js)自动生成多个�
 先执行webpack --config webpack.config.dev.multiplepage.js --progress --color 编译项目，再启动多页面服务nodemon appMultiplePage.js
 或者执行script脚本npm run multiple-page-build再执行npm run nodemon appMultiplePage.js
 ```
+
+
+***
+2016/12/23 
+- 增加[markdown编辑器](https://github.com/leozdgao/react-markdown)功能
+- 修改之前抽离css不成功bug
+

@@ -12,6 +12,7 @@ import Articles from './component/Articles';
 import Notes from './component/Notes';
 import Profile from './component/Profile';
 import FeedBack from './component/FeedBack';
+import './index-style.scss';
 
 class App extends React.Component {
 	constructor(props) {

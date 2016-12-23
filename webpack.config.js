@@ -15,6 +15,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const _BASE_ = "./src";
 const publicPath = "http://localhost/";
 const output_path = path.resolve(__dirname, "./dist");
+console.log(`${output_path}`);
 const icon_path = path.resolve(__dirname,'./favicon.ico');
 const node_modules = path.resolve(__dirname, 'node_modules');
 
@@ -41,8 +42,8 @@ const Config = {
         loaders:[
             { test: /\.js?$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['react','es2015','stage-0'] } },
             { test: /\.json$/, loader: 'json'},
-            { test:/\.css$/, include: path.resolve(__dirname, _BASE_), loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
-            { test: /\.scss$/, include: path.resolve(__dirname, _BASE_), loader: 'style!css!sass?sourceMap' },
+            { test:/\.css$/, include: path.resolve(__dirname, _BASE_), loader: ExtractTextPlugin.extract('style', 'css') },
+            { test: /\.scss$/, include: path.resolve(__dirname, _BASE_), loader: ExtractTextPlugin.extract('style','css!sass?sourceMap') },
             { test: /\.(png|jpg|gif|ico)$/, loader:`url?limit=8192&name=images/[hash].[ext]` },
             { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/, loader : 'file-loader' }
         ]
@@ -54,7 +55,7 @@ const Config = {
     plugins:[
         new webpack.NoErrorsPlugin(),//打包时不会因为错误而中断
         new CleanPlugin(['dist']),
-        new ExtractTextPlugin(`${output_path}/main.css`,{ allChunks: true, disable: false }),//可以将所有css文件打包到一个css文件中
+        new ExtractTextPlugin(`css/main.css`,{ allChunks: true, disable: false }),//可以将所有css文件打包到css/main.css文件中
         new HtmlWebpackPlugin({
             title: 'Meric的博客',
             template: `${_BASE_}/index.html`,
@@ -64,16 +65,13 @@ const Config = {
             minify: {
                 removeComments: true,//移除注释
                 collapseWhitespace: true
-            },
-            files: {
-                "css": ["main.css"],
             }
         }),
         new CopyWebpackPlugin([{
             from: `${_BASE_}/static/css/amazeui.min.css`, to: `${output_path}/css`
         },
         {
-            from: `${_BASE_}/static/fonts/fontawesome-webfont.woff2`,to:`${output_path}/fonts/fontawesome-webfont.woff2`
+            from: `${_BASE_}/static/fonts/fontawesome-webfont.woff2`,to:`${output_path}/fonts/`
         }]),
         /* 公共库 */
         new webpack.optimize.CommonsChunkPlugin({

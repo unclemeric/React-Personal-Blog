@@ -2,8 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Button } from 'amazeui-react';
 import marked from 'marked';
-import Editor from 'react-md-editor';
-
 import image from './static/images/logo.png';
 import './static/scss/index.scss';
 // import Button from './component/Button/Button';
@@ -37,9 +35,6 @@ class App extends React.Component {
         <div className="example">
           <div className="hint">The editor is below, with default options. This example also
             uses marked to generate the preview on the right as you type.</div>
-          <div className="editor">
-            <Editor value={this.state.code} onChange={this.updateCode} />
-          </div>
           <div className="preview" dangerouslySetInnerHTML={{ __html: preview }} />
         </div>
         <Button amStyle="primary">Hello World</Button>
