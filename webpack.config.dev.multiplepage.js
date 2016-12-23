@@ -75,7 +75,7 @@ pageConfig.forEach(function (conf) {
         filename: `${conf.filename.split('\.')[0]}.html`,
         template: './src/index.html',
         inject:'body',
-        chunks:['vender', conf.filename],
+        chunks:['vender', filename],
         hash:true,
     }));
 })
