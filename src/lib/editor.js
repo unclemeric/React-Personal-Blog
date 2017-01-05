@@ -29,7 +29,7 @@ const MdEditor = React.createClass({
   render () {
     const panelClass = cNames([ 'md-panel', { 'fullscreen': this.state.isFullScreen } ])
     const editorClass = cNames([ 'md-editor', { 'expand': this.state.mode === 'edit' } ])
-    const previewClass = cNames([ 'md-preview', 'markdown', { 'expand': this.state.mode === 'preview', 'shrink': this.state.mode === 'edit' } ])
+    const previewClass = cNames([ 'md-preview', 'markdown','user-defind-scrollbar', { 'expand': this.state.mode === 'preview', 'shrink': this.state.mode === 'edit' } ])
 
     return (
       <div className={panelClass}>
@@ -38,7 +38,7 @@ const MdEditor = React.createClass({
           {this._getToolBar()}
         </div>
         <div className={editorClass}>
-          <textarea ref="editor" name="content" onChange={this._onChange} />{/* style={{height: this.state.editorHeight + 'px'}} */}
+          <textarea ref="editor" name="content" className="user-defind-scrollbar" onChange={this._onChange} />{/* style={{height: this.state.editorHeight + 'px'}} */}
         </div>
         <div className={previewClass} ref="preview" dangerouslySetInnerHTML={{ __html: this.state.result }}></div>
         <div className="md-spliter"></div>
@@ -110,7 +110,8 @@ const MdEditor = React.createClass({
 
     this._ltr = setTimeout(() => {
       this.setState({ result: marked(this.textControl.value) }) // change state
-    }, 300)
+    }, 300);
+    this.props.getValue&&this.props.getValue(marked(this.textControl.value));
   },
   _changeMode (mode) {
     return (e) => {

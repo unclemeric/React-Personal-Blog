@@ -11,11 +11,8 @@ class MDEditor extends React.Component {
     render() {
         return (
             <div>
-                <div className="editor-title">
-                    <input type="text" className="textbox" name="title" defaultValue="" placeholder="标题"/>
-                </div>
                 <div className="container" style={{paddingBottom: '20px',width: '80rem', maxWidth: '1600px'}} >
-                    <Editor>
+                    <Editor getValue={this.props.getValue||null}>
                         {/*<option title="自定义按钮" onClick={this._handleClick}><i>x</i></option>*/}
                     </Editor>
                 </div>

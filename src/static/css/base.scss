@@ -24,3 +24,40 @@ body {
 img {
     vertical-align: middle;
 }
+*.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    /*
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
+}
+/* 自定义滚动条样式 */
+.user-defind-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+/* 滚动条两端的按钮 */
+.user-defind-scrollbar::-webkit-scrollbar-button {
+    display: none;
+}
+/* 外层轨道 */
+.user-defind-scrollbar::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #c1c1c1;
+}
+/* 滚动的滑块 */
+.user-defind-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #666;
+}
+/* 边角 */
+.user-defind-scrollbar::-webkit-scrollbar-corner {
+    display: none;
+}
+/* 右下角拖动块 */
+.user-defind-scrollbar::-webkit-resizer {
+    display: none;
+}

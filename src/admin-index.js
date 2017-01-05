@@ -11,7 +11,7 @@ import MainArea from './component/Admin/Home';
 import LeftNav from './component/Admin/LeftNav';
 import Articles from './component/Admin/Home/Articles';
 import ArticleView from './component/Articles/Article';
-import MDEditor from './component/MDEditor';
+import PublishArticle from './component/Admin/PublishArticle';
 import './component/Admin/index.scss';
 
 class App extends React.Component {
@@ -41,7 +41,6 @@ class App extends React.Component {
 		);
 	}
 }
-
 const element = document.getElementById('app');
 render(
 		<Router history={hashHistory}>
@@ -50,7 +49,7 @@ render(
 				<Route path="index" component={MainArea} />
 				<Route path="article" component={Articles}/>
 				<Route path="article/:id" component={ArticleView} />
-				<Route path="editor" component={MDEditor} />
+				<Route path="editor" component={PublishArticle} />
 			</Route>
 		</Router>,
 	element

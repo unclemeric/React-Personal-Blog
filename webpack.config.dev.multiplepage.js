@@ -49,11 +49,11 @@ const configs = {
     plugins: [
         new ExtractTextPlugin(`css/[name].css`),//可以将所有css文件打包到css/main.css文件中
         new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"'}),
-        //把公用的lodashjs打包到公共的js里面
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vender",
-            minChunks: Infinity,
-        }),
+        //把公用的lodashjs打包到公共的js里面 开发环境不要加 否则不能自动刷新页面
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: "vender",
+        //     minChunks: Infinity,
+        // }),
         new webpack.ProvidePlugin({'_': "lodash"}),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.NoErrorsPlugin(),

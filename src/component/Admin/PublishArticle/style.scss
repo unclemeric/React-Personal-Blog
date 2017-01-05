@@ -1,0 +1,41 @@
+.admin-article-publish {
+  label {
+    position: absolute;
+    top:0;
+    color:#a9a9a9;
+    transition: all .5s ease-in-out;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-weight: 200;
+    left:0;
+    width: 40rem;
+  }
+  .editor-group {
+    position: relative;
+    padding-bottom: 30px;
+    input {
+      height: 2.8rem;
+      width: 40rem;
+      text-indent: 10px;
+      transition: all .5s ease;
+      &:focus {
+        border: 1px solid lightblue;
+      }
+    }
+    textarea {
+      height: 100px;
+      width: 40rem;
+      padding: 2px 10px;
+    }
+  }
+  .active{
+    >label {
+      top:-24px;
+      left:-10px;
+      color:#333333;
+      font-weight: bold;
+      font-size: 12px;
+      width: auto;
+    }
+  }
+}
