@@ -1,6 +1,7 @@
 /**
  * Created by Meric on 2016/10/24.
  */
+const apiPrefix = "http://127.0.0.1:3000/admin";
 module.exports = {
 	port: 80,
 	staticPath: './build',
@@ -23,5 +24,11 @@ module.exports = {
             entryPath:'./src/admin-index.js',
             path:'/admin'
         }
-	]
+	],
+	AdminApi:{
+		publish_article:`${apiPrefix}/article/put`,
+		list_article:`${apiPrefix}/article`,
+        edit_article:`${apiPrefix}/article/edit`,
+        delete_article:`${apiPrefix}/article/delete`,
+	}
 }

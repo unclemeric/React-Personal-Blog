@@ -22,7 +22,7 @@ class ArticleView extends React.Component {
           return response.json();
         }).then((rtn) => {
             this.setState({
-                article: rtn
+                article: rtn.data||{}
             })
         }).catch(function(err) {
             console.log(err);

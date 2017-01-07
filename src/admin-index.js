@@ -10,6 +10,7 @@ import Header from './component/PageHeader/Header';
 import MainArea from './component/Admin/Home';
 import LeftNav from './component/Admin/LeftNav';
 import Articles from './component/Admin/Home/Articles';
+import EditArticle from './component/Admin/Home/Articles/edit';
 import ArticleView from './component/Articles/Article';
 import PublishArticle from './component/Admin/PublishArticle';
 import './component/Admin/index.scss';
@@ -49,6 +50,7 @@ render(
 				<Route path="index" component={MainArea} />
 				<Route path="article" component={Articles}/>
 				<Route path="article/:id" component={ArticleView} />
+				<Route path="article/edit/:id" component={EditArticle} />
 				<Route path="editor" component={PublishArticle} />
 			</Route>
 		</Router>,

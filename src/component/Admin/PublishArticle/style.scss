@@ -15,7 +15,7 @@
     padding-bottom: 30px;
     input {
       height: 2.8rem;
-      width: 40rem;
+      width: 50rem;
       text-indent: 10px;
       transition: all .5s ease;
       &:focus {
@@ -23,9 +23,10 @@
       }
     }
     textarea {
-      height: 100px;
-      width: 40rem;
-      padding: 2px 10px;
+      height: 10rem;
+      width: 80rem;
+      padding: .2rem .5rem;
+      line-height: 1.5rem;
     }
   }
   .active{

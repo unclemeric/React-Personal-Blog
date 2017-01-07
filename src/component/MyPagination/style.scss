@@ -1,0 +1,29 @@
+ul.my-pagination {
+  list-style: none;
+  height: 2.6rem;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  width: auto;
+  display: inline-block;
+  li {
+    float: left;
+    width: 4rem;
+    height: 2.5rem;
+    text-align: center;
+    margin-left: 5px;
+    cursor: pointer;
+    font: 12px/2.5rem '';
+    transition: all .2s ease-in-out;
+    border:1px solid #ccc;
+    &:hover{
+      -moz-box-shadow: 1px -1px 5px #888888;
+      -webkit-box-shadow: 1px -1px 5px #888888;
+      box-shadow: 1px -1px 5px #888888;
+    }
+  }
+  .curr {
+    background: #ccc;
+    border:none !important;
+  }
+}

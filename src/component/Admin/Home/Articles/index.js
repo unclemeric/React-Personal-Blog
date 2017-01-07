@@ -2,145 +2,90 @@
  * author by Laisf on 2016/12/21.
  */
 import React, { Component } from 'react';
-import { ListNews, Titlebar } from 'amazeui-react';
+import MyPagination from '../../../MyPagination';
+import config from '../../../../../config';
+import utils from '../../../../utils/DataUtils';
 import './style.scss';
 
-let data = {
-    main: [
-        {
-            title: '我很囧，你保重....晒晒旅行中的那些囧！',
-            link: '#/article/1',
-            date: '2013-09-18',
-        },
-        {
-            title: '我最喜欢的一张画',
-            link: '##',
-            date: '2013-10-14',
-        },
-        {
-            title: '“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！',
-            link: '##',
-            date: '2013-11-18',
-        },
-        {
-            title: '我很囧，你保重....晒晒旅行中的那些囧！',
-            link: '##',
-            date: '2013-09-18',
-        },
-        {
-            title: '我最喜欢的一张画',
-            link: '##',
-            date: '2013-10-14',
-        },
-        {
-            title: '“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！',
-            link: '##',
-            date: '2013-11-18',
-        },
-        {
-            title: '我很囧，你保重....晒晒旅行中的那些囧！',
-            link: '##',
-            date: '2013-09-18',
-        },
-        {
-            title: '我最喜欢的一张画',
-            link: '##',
-            date: '2013-10-14',
-        },
-        {
-            title: '“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！',
-            link: '##',
-            date: '2013-11-18',
-        },
-        {
-            title: '我很囧，你保重....晒晒旅行中的那些囧！',
-            link: '##',
-            date: '2013-09-18',
-        },
-        {
-            title: '我最喜欢的一张画',
-            link: '##',
-            date: '2013-10-14',
-        },
-        {
-            title: '“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！',
-            link: '##',
-            date: '2013-11-18',
-        },
-        {
-            title: '我很囧，你保重....晒晒旅行中的那些囧！',
-            link: '##',
-            date: '2013-09-18',
-        },
-        {
-            title: '我最喜欢的一张画',
-            link: '##',
-            date: '2013-10-14',
-        },
-        {
-            title: '“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！',
-            link: '##',
-            date: '2013-11-18',
-        },
-        {
-            title: '我很囧，你保重....晒晒旅行中的那些囧！',
-            link: '##',
-            date: '2013-09-18',
-        },
-        {
-            title: '我最喜欢的一张画',
-            link: '##',
-            date: '2013-10-14',
-        },
-        {
-            title: '“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！',
-            link: '##',
-            date: '2013-11-18',
-        },
-        {
-            title: '我很囧，你保重....晒晒旅行中的那些囧！',
-            link: '##',
-            date: '2013-09-18',
-        },
-        {
-            title: '我最喜欢的一张画',
-            link: '##',
-            date: '2013-10-14',
-        },
-        {
-            title: '“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！',
-            link: '##',
-            date: '2013-11-18',
-        },
-        {
-            title: '我很囧，你保重....晒晒旅行中的那些囧！',
-            link: '##',
-            date: '2013-09-18',
-        },
-        {
-            title: '我最喜欢的一张画',
-            link: '##',
-            date: '2013-10-14',
-        },
-        {
-            title: '“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！',
-            link: '##',
-            date: '2013-11-18',
-        },
-    ],
-};
-
-var main = _.map(data.main,function (item,i) {
-    item.link = "#/article/"+(i+1);
-    return item;
-})
-data.main = main;
-
 class Articles extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            currentTarget:"",
+            page:1,
+            perPage:20,
+            resultData:[],
+        }
+    }
+    componentDidMount() {
+        this.getAllArticle();
+    }
+    getAllArticle = ()=>{
+        fetch(config.AdminApi.list_article,{
+            method:'POST',
+            body: JSON.stringify({
+                page: this.state.page,
+                rows: this.state.perPage
+            })
+        }).then((response) => {
+            return response.json();
+        }).then((rtn) => {
+            this.setState({
+                resultData:rtn.data||[]
+            });
+        });
+    }
+    doClickPage = (pageNum) =>{
+        this.setState({
+            page:pageNum
+        });
+    }
+    deleteAction= (id)=>{
+        fetch(`${config.AdminApi.delete_article}/${id}`,{
+            method:'delete'
+        }).then((response) => {
+            return response.json();
+        }).then((rtn) => {
+            console.log(rtn);
+        });
+    }
+    doDelete = (e)=> {
+        if(confirm("是否要删除该文章？")){
+            this.deleteAction(e.target.getAttribute("data-id"));
+        }
+    }
     render() {
         return (
             <div className="admin-article-list">
-                <ListNews style={{ background: 'transparent' }} header={<Titlebar title="推荐列表" />} data={data} />
+                <div data-am-widget="list-news" className="am-list-news am-list-news-default" style={{background:"transparent"}} >
+                    <div data="" data-am-widget="titlebar" className="am-titlebar am-titlebar-default">
+                        <h2 className="am-titlebar-title">推荐列表</h2>
+                    </div>
+                    <div className="am-list-news-bd">
+                        <ul className="am-list">
+                            {
+                                this.state.resultData.rows&&this.state.resultData.rows.length>0 ? _.map(this.state.resultData.rows||[],(item,i)=> {
+                                    console.log(item)
+                                    return (
+                                        <li key={i} className="am-g am-list-item-dated">
+                                            <a className="am-list-item-hd" href={`#/article/edit/${item.id}`} style={{paddingRight:"280px"}}>
+                                                {item.title}
+                                            </a>
+                                            <span className="am-list-date">
+                                                <span style={{marginRight:'20px'}}>{utils.dateToStr(new Date(item.publishDate),'Y-M-D H:M')}</span>
+                                                <button className="am-btn am-btn-danger" style={{position: 'relative',top: '-4px',padding: '6px 14px',fontSize: '14px' }} onClick={this.doDelete} data-id={item.id}>删除</button>
+                                            </span>
+                                        </li>
+                                    )
+                                })
+                                    : <div style={{padding:"2rem",textAlign:'left'}}> 暂无文章~ <a href="#/editor">马上去写</a> </div>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div style={{textAlign:'center'}}>
+                    <MyPagination totalSize={this.state.resultData.total||0} doClickPage={this.doClickPage} perPage={this.state.perPage} displayCount={3}/>
+                </div>
             </div>
         );
     }

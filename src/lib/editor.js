@@ -14,13 +14,29 @@ const MdEditor = React.createClass({
       panelClass: 'md-panel',
       mode: 'split',
       isFullScreen: false,
+
       result: marked(this.props.content || '')
     }
   },
+  defaultFlagNumber:0,
   componentDidMount () {
     // cache dom node
       this.textControl = this.refs.editor;
       this.previewControl = this.refs.preview;
+  },
+  componentWillReceiveProps:function(nextProps,nextState){
+      /**
+       * 第一次传进来的是默认空的 第二次才是有值，第二次之后将不再更新编辑器的内容
+       */
+      if(this.defaultFlagNumber<2){
+          if(nextProps.content!=this.state.content){
+              this.setState({
+                  result: marked(nextProps.content || ''),
+              });
+          }
+          this.textControl.value = nextProps.originSource;
+          this.defaultFlagNumber++;
+      }
   },
   componentWillUnmount () {
     this.textControl = null
@@ -38,7 +54,7 @@ const MdEditor = React.createClass({
           {this._getToolBar()}
         </div>
         <div className={editorClass}>
-          <textarea ref="editor" name="content" className="user-defind-scrollbar" onChange={this._onChange} />{/* style={{height: this.state.editorHeight + 'px'}} */}
+          <textarea ref="editor" name="content" className="user-defind-scrollbar" onChange={this._onChange} defaultValue={this.state.content}/>{/* style={{height: this.state.editorHeight + 'px'}} */}
         </div>
         <div className={previewClass} ref="preview" dangerouslySetInnerHTML={{ __html: this.state.result }}></div>
         <div className="md-spliter"></div>
@@ -111,7 +127,7 @@ const MdEditor = React.createClass({
     this._ltr = setTimeout(() => {
       this.setState({ result: marked(this.textControl.value) }) // change state
     }, 300);
-    this.props.getValue&&this.props.getValue(marked(this.textControl.value));
+    this.props.getValue&&this.props.getValue(marked(this.textControl.value),this.textControl.value);
   },
   _changeMode (mode) {
     return (e) => {

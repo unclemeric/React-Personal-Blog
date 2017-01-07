@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import './style.scss';
-import Config from '../../config';
+import Config from '../../config/profileConfig';
 import header from '../../static/images/header.png';
 
 export default class Profile extends React.Component {
