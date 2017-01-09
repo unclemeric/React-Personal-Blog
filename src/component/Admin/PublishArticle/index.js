@@ -55,7 +55,7 @@ class PublishArticle extends Component {
      * @param e
      */
     onChange = (e) => {
-        this.bindData(this, e, e.target.getAttribute('data-key'));
+        this.bindData(this, e, e.target.getAttribute('data-name'));
     }
     /**
      * 控件动画效果
@@ -119,18 +119,18 @@ class PublishArticle extends Component {
                 <div className={classNames("editor-group",this.props.isEdit?"active":"")}>
                     <label onClick={this.focusInput}>标题</label>
                     <input type="text" onFocus={this.onFocus} onBlur={this.onBlur} className="textbox"
-                           onChange={this.onChange} data-key="title" value={this.state.title}/>
+                           onChange={this.onChange} data-name="title" value={this.state.title}/>
                 </div>
                 <div className={classNames("editor-group",this.props.isEdit?"active":"")}>
                     <label onClick={this.focusInput}>作者</label>
                     <input type="text" style={{width: '20rem'}} onFocus={this.onFocus} onBlur={this.onBlur}
-                           className="textbox" onChange={this.onChange} data-key="author"
+                           className="textbox" onChange={this.onChange} data-name="author"
                            value={this.state.author}/>
                 </div>
                 <div className={classNames("editor-group",this.props.isEdit?"active":"")} style={{paddingBottom: 0}}>
                     <label onClick={this.focusInput}>前言</label>
                     <textarea onFocus={this.onFocus} onBlur={this.onBlur} className="textbox user-defind-scrollbar"
-                              onChange={this.onChange} data-key="before" value={this.state.before}/>
+                              onChange={this.onChange} data-name="before" value={this.state.before}/>
                 </div>
                 <div className="container" style={{paddingBottom: '20px',width: '100rem', maxWidth: '1600px'}} >
                     <Editor content={this.state.content || ""} originSource={this.state.defaultOriginContent||""} getValue={this.getContentResult||null} />
