@@ -46,7 +46,7 @@ const element = document.getElementById('app');
 render(
 		<Router history={hashHistory}>
 			<Route path="/" component={App}>
-				<IndexRoute component={MainArea} />
+				<IndexRoute component={Articles} />
 				<Route path="index" component={MainArea} />
 				<Route path="article" component={Articles}/>
 				<Route path="article/:id" component={ArticleView} />

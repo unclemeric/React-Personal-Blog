@@ -7,8 +7,7 @@
     "deploy-dev": "webpack -p --progress --colors",
     "deploy-dev-server": "webpack-dev-server --config webpack.config.dev.js --progress --colors",
     "deploy-server": "webpack -p --config webpack.config.js --progress --colors&&nodemon app.js",
-    "multiple-page-build": "webpack --config webpack.config.dev.multiplepage.js --progress --color",
-    "multiple-page-dev": "node ./appMultiplePageDev.js",
+    "multiple-page-dev": "webpack --config webpack.config.dev.multiplepage.js --progress --color&&node ./appMultiplePageDev.js",
     "multiple-page-pro": "webpack -p --config webpack.config.pro.multiplepage.js&&node ./appMultiplePagePro.js"
   },
   "repository": {

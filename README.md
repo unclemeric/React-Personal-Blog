@@ -3,84 +3,134 @@
 
 ##目录
 ```
-|   .eslintignore                                                       eslint忽略配置文件
-|   .eslintrc                                                           eslint配置文件
-|   .gitignore                                                          github忽略提交文件配置
-|   app.js                                                              服务启动入口
-|   appMultiplePage.js                                                  多页面服务启动入口
-|   config.js                                                           项目服务配置文件
-|   favicon.ico                                                         网站图标
-|   MarkdownEditor                                                      Markdown编辑器说明
-|   package.json                                                        项目依赖json文件
-|   ReactMarkdown.md                                                    ReactMarkdown说明文件
-|   README.md                                                           项目说明文件
-|   webpack.config.js                                                   webpack配置文件
-|   webpack.config.dev                                                  webpack热加载配置文件
-|   webpack.config.dev.multiplepage.js                                  webpack多页面配置文件
-\---src                                                                 view层文件存放目录
-    |   entry.js                                                        之前使用的入口文件，现在不用了
+|   .eslintignore   
+|   .eslintrc
+|   .gitignore
+|   app.js                                                              express生产环境单页面入口文件
+|   appMultiplePageDev.js                                               express多页面测试环境入口文件
+|   appMultiplePagePro.js                                               express多页面生产环境入口文件
+|   config.js                                                           项目内部配置文件(接口api、页面配置等)
+|   favicon.ico
+|   package.json
+|   ReactMarkdown.md
+|   README.md                                                           说明文档
+|   webpack.config.dev.js                                               webpack单页面测试环境配置文件
+|   webpack.config.dev.multiplepage.js                                  webpack多页面测试环境配置文件
+|   webpack.config.js                                                   webpack单页面生产环境配置文件
+|   webpack.config.pro.multiplepage.js                                  webpack多页面生产环境配置文件
+|
+\---src                                                                 代码根目录
+    |   admin-index.js                                                  admin后台入口文件
+    |   entry.js                                                        tes1页面入口文件
+    |   index-style.scss                                                
     |   index.html                                                      页面模板文件
-    |   index.js                                                        js入口文件
+    |   index.js                                                        前台页面入口文件
+    |
     +---component                                                       组件目录
-    |   +---Articles                                                    文章组件
-    |   |       index.js                                                
-    |   |       style.scss                                              
-    |   +---ConnectMe                                                   联系我组件
-    |   |       index.js                                                
-    |   +---FeedBack                                                    反馈组件
-    |   |       index.js                                                
-    |   |       style.scss                                              
-    |   +---Notes                                                       笔记组件
-    |   |       index.js                                                
-    |   |       style.scss                                              
-    |   +---PageFooter                                                  尾部组件
-    |   |       index.js                                                
-    |   |       style.scss                                              
-    |   +---PageHeader                                                  头部组件
-    |   |   |   index.js                                                
-    |   |   |   style.scss                                              
-    |   |   +---Header                                                  头组件
-    |   |   |       index.js                                            
-    |   |   |       style.scss                                          
-    |   |   \---HeaderNav                                               头部导航栏
-    |   |           index.js                                            
-    |   |           style.scss                                          
-    |   +---PageIndex                                                   首页组件
-    |   |   |   index.js                                                
-    |   |   |   style.scss                                              
-    |   |   \---IndexContent                                            首页内容组件
-    |   |           index.js                                            
-    |   |           style.scss                                          
-    |   \---Profile                                                     个人简介
-    |           index.js                                                
-    |           style.scss                                              
-    +---config                                                          页面配置文件
-    |       index.js                                                    
-    +---static                                                          静态文件目录
-    |   +---css                                                         
-    |   |       amazeui.min.css                                         amazeui样式
-    |   |       base.scss                                               
-    |   |       codemirror.css                                          markdown插件css文件
-    |   +---fonts                                                       
-    |   |       fontawesome-webfont.woff2                               amazeui字体
-    |   +---images                                                      图片目录
-    |   |       header.png                                              
-    |   |       logo.png                                                
-    |   |       profile_ico_b.png                                       
-    |   \---scss                                                        
-    |           component.scss                                          
-    |           index.scss                                              
-    \---utils                                                           工具类
-            autoChange.js                                               
+    |   +---Admin                                                       admin后台组件目录
+    |   |   |   index.scss
+    |   |   |
+    |   |   +---Home                                                    
+    |   |   |   |   index.js
+    |   |   |   |   style.scss
+    |   |   |   |
+    |   |   |   \---Articles                                            文章编辑列表组件
+    |   |   |           edit.js                                         文章编辑组件
+    |   |   |           index.js                                        文章列表
+    |   |   |           style.scss
+    |   |   |
+    |   |   +---LeftNav                                                 左边菜单栏
+    |   |   |       index.js
+    |   |   |       index.scss
+    |   |   |
+    |   |   \---PublishArticle                                          发布文章组件
+    |   |           index.js
+    |   |           style.scss
+    |   |
+    |   +---Articles                                                    前台文章
+    |   |   |   index.js                                                前台文章列表组件
+    |   |   |   style.scss
+    |   |   |
+    |   |   \---Article                                                 前台文章内容页
+    |   |           index.js
+    |   |
+    |   +---ConnectMe                                                   前台联系我组件
+    |   |       index.js
+    |   |
+    |   +---FeedBack                                                    前台反馈组件
+    |   |       index.js
+    |   |       style.scss
+    |   |
+    |   +---MDEditor                                                    markdown编辑器容器(可自定义，markdown主要代码不在这)
+    |   |       index.js
+    |   |
+    |   +---MyPagination                                                分页组件
+    |   |       index.js
+    |   |       style.scss
+    |   |
+    |   +---Notes
+    |   |       index.js
+    |   |       style.scss
+    |   |
+    |   +---PageFooter                                                  页尾
+    |   |       index.js
+    |   |       style.scss
+    |   |
+    |   +---PageHeader                                                  页头容器
+    |   |   |   index.js
+    |   |   |   style.scss
+    |   |   |
+    |   |   +---Header                                                  页头
+    |   |   |       index.js
+    |   |   |       style.scss
+    |   |   |
+    |   |   \---HeaderNav                                               页头导航菜单
+    |   |           index.js
+    |   |           style.scss
+    |   |
+    |   +---PageIndex                                                   首页
+    |   |   |   index.js
+    |   |   |   style.scss
+    |   |   |
+    |   |   \---IndexContent                                            首页内容
+    |   |           index.js
+    |   |           style.scss
+    |   |
+    |   \---Profile                                                     个人资料
+    |           index.js
+    |           style.scss
+    |
+    +---config                                                          个人资料配置文件
+    |       profileConfig.js
+    |
+    +---lib                                                             markdown组件
+    |       editor.js
+    |       editor.less
+    |
+    +---static
+    |   +---css
+    |   |       amazeui.min.css
+    |   |       base.scss
+    |   |       codemirror.css                                          markdown样式文件
+    |   |
+    |   +---fonts
+    |   |       fontawesome-webfont.woff2
+    |   |
+    |   +---images
+    |   |       header.png
+    |   |       logo.png
+    |   |       profile_ico_b.png
+    |   |
+    |   \---scss
+    |           component.scss                                          markdown sass文件
+    |           index.scss
+    |
+    \---utils
+            amazeutil.js
+            autoChange.js
+            DataUtils.js
 ```
-##project说明
-```
-安装全局webpack webpack-dev-server
-"deploy-dev": "webpack --progress --colors",                                           //在根目录生成/build文件夹和编译后的文件
-"deploy-dev-server": "webpack-dev-server --config webpack.config.dev.js --progress --colors",                //执行deploy-dev-server,等待编译完之后 在浏览器访问:http://localhost:3000 有热加载功能 适用于开发
-"deploy-server": "webpack --config webpack.config.js --progress --colors&&nodemon app.js"                        //执行deploy-server,等待编译完之后 在浏览器访问:http://localhost
-相关配置请看config文件
-```
+
 ##webpack配置文件说明
 ```
 webpack.config.js：用于生产环境编译文件。
@@ -111,6 +161,12 @@ eslint: {
 
 ###关于appMultiplePage.js和webpack.config.dev.multiplepage.js的说明
 ```
+"deploy-dev": "webpack -p --progress --colors",
+"deploy-dev-server": "webpack-dev-server --config webpack.config.dev.js --progress --colors",                                                                 //开发环境单页面启动脚本
+"deploy-server": "webpack -p --config webpack.config.js --progress --colors&&nodemon app.js",                                                                 //生产环境单页面启动脚本
+"multiple-page-dev": "node ./appMultiplePageDev.js",                                                                                                          //开发环境多页面的服务启动入口脚本，根据配置文件的projectConf配置生成路由服务，结合react热加载，不需要手动重新编译，但是需要手动刷新页面。
+"multiple-page-pro": "webpack -p --config webpack.config.pro.multiplepage.js&&node ./appMultiplePagePro.js"                                                   //生产环境多页面服务启动脚本
+
 appMultiplePage.js：一个react多页面的服务启动入口js，根据配置文件的projectConf配置生成路由服务，结合react热加载，不需要手动重新编译，但是需要手动刷新页面。
 webpack.config.dev.multiplepage.js：根据配置(config.js)自动生成多个页面的webpack配置文件
 
