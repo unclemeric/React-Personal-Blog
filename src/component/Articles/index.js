@@ -3,6 +3,9 @@
  */
 import React from 'react';
 import { ListNews, Panel, Titlebar } from 'amazeui-react';
+import MyPagination from '../MyPagination';
+import config from '../../../config';
+import amazeutils from '../../utils/amazeutil';
 import ConnectMe from '../ConnectMe';
 import './style.scss';
 
@@ -132,14 +135,50 @@ const data = {
 };
 
 class Articles extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            page:1,//页码
+            perPage:20,//每页20个
+            resultData:null,//文章列表结果集
+        }
+    }
+    componentDidMount() {
+        this.getAllArticle();
+    }
+    getAllArticle = ()=>{
+        fetch(config.AdminApi.list_article,{
+            method:'POST',
+            body: JSON.stringify({
+                page: this.state.page,
+                rows: this.state.perPage
+            })
+        }).then((response) => {
+            return response.json();
+        }).then((rtn) => {
+            this.setState({
+                resultData:rtn.data||[]
+            });
+        });
+    }
+    /**
+     * 分页点击设置页码
+     */
+    doClickPage = (pageNum) =>{
+        this.setState({
+            page:pageNum
+        });
+    }
 	render() {
 		return (
 			<div className="main-container">
 				<div className="left-container">
-					<ListNews style={{ background: 'transparent' }} header={<Titlebar title="文章列表" />} data={data} />
+					<ListNews style={{ background: 'transparent' }} header={<Titlebar title="文章列表" />} data={amazeutils.formatViewList(this.state.resultData?this.state.resultData.rows:null)} />
+                    <div style={{textAlign:'center',marginTop:"5rem" }}>
+                        <MyPagination totalSize={this.state.resultData ? this.state.resultData.total : 0 } doClickPage={this.doClickPage} perPage={this.state.perPage} displayCount={3}/>
+                    </div>
 				</div>
 				<div className="right-container">
-
 					<Panel header="文章分类">
 						<ul>
 							<li><a>分类</a></li>

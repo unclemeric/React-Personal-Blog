@@ -1,5 +1,6 @@
 /**
  * author by Laisf on 2016/12/21.
+ * 后台主页左边菜单
  */
 import React, { Component } from 'react';
 import  { Nav, NavItem,Icon } from 'amazeui-react';

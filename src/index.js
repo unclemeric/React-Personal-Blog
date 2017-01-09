@@ -9,6 +9,7 @@ import Footer from './component/PageFooter';
 import PageIndex from './component/PageIndex';
 import PageHeader from './component/PageHeader';
 import Articles from './component/Articles';
+import Article from './component/Articles/Article';
 import Notes from './component/Notes';
 import Profile from './component/Profile';
 import FeedBack from './component/FeedBack';
@@ -23,7 +24,7 @@ class App extends React.Component {
 			<div>
 				<PageHeader />
 				<div className="content">
-					{this.props.children}
+					{ this.props.children }
 				</div>
 				<GoTop theme="fixed" autoHide icon="arrow-up" />
 				<Footer>
@@ -40,11 +41,12 @@ render(
 		<Router history={hashHistory}>
 			<Route path="/" component={App}>
 				<IndexRoute component={PageIndex} />
-				<Route path="header" component={PageHeader} />
-				<Route path="articles" component={Articles} />
-				<Route path="notes" component={Notes} />
-				<Route path="profile" component={Profile} />
-				<Route path="feedback" component={FeedBack} />
+				<Route path="/header" component={PageHeader} />
+				<Route path="/articles" component={Articles} />
+				<Route path="/articles/:id" component={Article} />
+				<Route path="/notes" component={Notes} />
+				<Route path="/profile" component={Profile} />
+				<Route path="/feedback" component={FeedBack} />
 			</Route>
 		</Router>,
 	element

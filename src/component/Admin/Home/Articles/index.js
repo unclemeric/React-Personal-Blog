@@ -1,5 +1,6 @@
 /**
  * author by Laisf on 2016/12/21.
+ * 后台文章列表组件
  */
 import React, { Component } from 'react';
 import MyPagination from '../../../MyPagination';
@@ -11,15 +12,17 @@ class Articles extends Component {
     constructor(props){
         super(props);
         this.state = {
-            currentTarget:"",
-            page:1,
-            perPage:20,
-            resultData:[],
+            page:1,//页码
+            perPage:20,//每页20个
+            resultData:null,//文章列表结果集
         }
     }
     componentDidMount() {
         this.getAllArticle();
     }
+    /**
+     * 查询全部文章
+     */
     getAllArticle = ()=>{
         fetch(config.AdminApi.list_article,{
             method:'POST',
@@ -35,20 +38,31 @@ class Articles extends Component {
             });
         });
     }
+    /**
+     * 分页点击设置页码
+     */
     doClickPage = (pageNum) =>{
         this.setState({
             page:pageNum
         });
     }
+    /**
+     * 删除操作
+     */
     deleteAction= (id)=>{
-        fetch(`${config.AdminApi.delete_article}/${id}`,{
-            method:'delete'
-        }).then((response) => {
-            return response.json();
-        }).then((rtn) => {
-            console.log(rtn);
-        });
+        if(id){
+            fetch(`${config.AdminApi.delete_article}/${id}`,{
+                method:'delete'
+            }).then((response) => {
+                return response.json();
+            }).then((rtn) => {
+                console.log(rtn);
+            });
+        }
     }
+    /**
+     * 点击删除
+     */
     doDelete = (e)=> {
         if(confirm("是否要删除该文章？")){
             this.deleteAction(e.target.getAttribute("data-id"));
@@ -64,8 +78,7 @@ class Articles extends Component {
                     <div className="am-list-news-bd">
                         <ul className="am-list">
                             {
-                                this.state.resultData.rows&&this.state.resultData.rows.length>0 ? _.map(this.state.resultData.rows||[],(item,i)=> {
-                                    console.log(item)
+                                this.state.resultData&&this.state.resultData.rows&&this.state.resultData.rows.length>0 ? _.map(this.state.resultData.rows||[],(item,i)=> {
                                     return (
                                         <li key={i} className="am-g am-list-item-dated">
                                             <a className="am-list-item-hd" href={`#/article/edit/${item.id}`} style={{paddingRight:"280px"}}>
@@ -78,13 +91,13 @@ class Articles extends Component {
                                         </li>
                                     )
                                 })
-                                    : <div style={{padding:"2rem",textAlign:'left'}}> 暂无文章~ <a href="#/editor">马上去写</a> </div>
+                                 : <div style={{padding:"2rem",textAlign:'left'}}> { this.state.resultData == null ? '加载中' : '<span>暂无文章~ </span><a href="#/editor">马上去写</a>' }</div>
                             }
                         </ul>
                     </div>
                 </div>
                 <div style={{textAlign:'center'}}>
-                    <MyPagination totalSize={this.state.resultData.total||0} doClickPage={this.doClickPage} perPage={this.state.perPage} displayCount={3}/>
+                    <MyPagination totalSize={this.state.resultData ? this.state.resultData.total : 0 } doClickPage={this.doClickPage} perPage={this.state.perPage} displayCount={3}/>
                 </div>
             </div>
         );

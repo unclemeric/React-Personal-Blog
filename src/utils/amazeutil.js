@@ -10,7 +10,7 @@ module.exports = {
                 item.publishDate = item.publishDate || "";
                 return {
                     title:item.title||"",
-                    link:`#/article/edit/${item.id}`,
+                    link:`#/articles/${item.id}`,
                     date:utils.dateToStr(new Date(item.publishDate),'Y-M-D H:M')
                 }
             })

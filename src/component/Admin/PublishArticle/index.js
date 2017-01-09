@@ -13,18 +13,21 @@ class PublishArticle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
-            author: "",
-            before: "",
-            content: "",
-            origin_content: "",
-            defaultContent: "",
-            defaultOriginContent:"",
-            id:""
+            title: "",//标题
+            author: "",//作者
+            before: "",//前言
+            content: "",//内容
+            origin_content: "",//源码内容
+            defaultContent: "",//用于第一次加载设置编辑器默认内容
+            defaultOriginContent:"",//用于第一次加载设置编辑器源码默认内容
+            id:""//文章id 编辑页面的时候使用
         }
-        this.bindData = utils.bindData;
+        this.bindData = utils.bindData;//双向绑定工具方法
     }
     componentDidMount() {
+        /**
+         * 如果当前是编辑操作
+         */
         if (this.props.isEdit) {
             fetch(`http://localhost:3000/admin/article/${this.props.articleId}`, {type: 'get'})
                 .then((response) => {
@@ -47,26 +50,50 @@ class PublishArticle extends Component {
         }
     }
 
+    /**
+     * 监控双向绑定数据
+     * @param e
+     */
     onChange = (e) => {
         this.bindData(this, e, e.target.getAttribute('data-key'));
     }
+    /**
+     * 控件动画效果
+     * @param e
+     */
     onFocus = (e) => {
         e.target.parentNode.className = classNames(e.target.parentNode.className.replace(/\sactive/g, ''), "active");
     }
+    /**
+     * 控件动画效果
+     * @param e
+     */
     onBlur = (e) => {
         if (!e.target.value) {
             e.target.parentNode.className = classNames(e.target.parentNode.className.replace(/\sactive/g, ''));
         }
     }
+    /**
+     * 聚焦至控件
+     * @param e
+     */
     focusInput = (e) => {
         e.target.nextElementSibling.focus();
     }
+    /**
+     *
+     * @param result 文本编辑器html源码
+     * @param origin 文本编辑器markdown源码
+     */
     getContentResult = (result, origin) => {
         this.setState({
             content: result,
             origin_content: origin
         });
     }
+    /**
+     * 提交按钮操作
+     */
     doSubmit = () => {
         var formData = {
             title: this.state.title,
@@ -86,7 +113,6 @@ class PublishArticle extends Component {
             console.dir(rtn);
         });
     }
-
     render() {
         return (
             <div className="admin-article-publish">
@@ -102,12 +128,12 @@ class PublishArticle extends Component {
                            value={this.state.author}/>
                 </div>
                 <div className={classNames("editor-group",this.props.isEdit?"active":"")} style={{paddingBottom: 0}}>
-                    <label onClick={this.focusInput}>写在前面</label>
+                    <label onClick={this.focusInput}>前言</label>
                     <textarea onFocus={this.onFocus} onBlur={this.onBlur} className="textbox user-defind-scrollbar"
                               onChange={this.onChange} data-key="before" value={this.state.before}/>
                 </div>
                 <div className="container" style={{paddingBottom: '20px',width: '100rem', maxWidth: '1600px'}} >
-                    <Editor content={this.state.content || ""} originSource={this.state.defaultOriginContent||""} getValue={this.props.getValue||null} />
+                    <Editor content={this.state.content || ""} originSource={this.state.defaultOriginContent||""} getValue={this.getContentResult||null} />
                 </div>
                 <div className="editor-group" style={{paddingBottom: 0}}>
                     <Button amStyle="primary" onClick={this.doSubmit}

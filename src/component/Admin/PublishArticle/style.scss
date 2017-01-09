@@ -8,7 +8,8 @@
     cursor: pointer;
     font-weight: 200;
     left:0;
-    width: 40rem;
+    width: 10rem;
+    text-align: left;
   }
   .editor-group {
     position: relative;
@@ -31,12 +32,13 @@
   }
   .active{
     >label {
-      top:-24px;
-      left:-10px;
+      top:3px;
+      right:35px;
       color:#333333;
       font-weight: bold;
       font-size: 12px;
-      width: auto;
+      left: -4rem;
+      text-align: left;
     }
   }
 }
