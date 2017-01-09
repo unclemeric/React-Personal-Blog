@@ -18,17 +18,17 @@ class Articles extends Component {
         }
     }
     componentDidMount() {
-        this.getAllArticle();
+        this.getAllArticle(this.state.page,this.state.perPage);
     }
     /**
      * 查询全部文章
      */
-    getAllArticle = ()=>{
-        fetch(config.AdminApi.list_article,{
+    getAllArticle = (page,rows)=>{
+        fetch(config.Admin.Api.list_article,{
             method:'POST',
             body: JSON.stringify({
-                page: this.state.page,
-                rows: this.state.perPage
+                page: page,
+                rows: rows
             })
         }).then((response) => {
             return response.json();
@@ -45,13 +45,14 @@ class Articles extends Component {
         this.setState({
             page:pageNum
         });
+        this.getAllArticle(pageNum,this.state.perPage);
     }
     /**
      * 删除操作
      */
     deleteAction= (id)=>{
         if(id){
-            fetch(`${config.AdminApi.delete_article}/${id}`,{
+            fetch(`${config.Admin.Api.delete_article}/${id}`,{
                 method:'delete'
             }).then((response) => {
                 return response.json();

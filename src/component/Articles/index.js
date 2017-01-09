@@ -147,7 +147,7 @@ class Articles extends React.Component {
         this.getAllArticle();
     }
     getAllArticle = ()=>{
-        fetch(config.AdminApi.list_article,{
+        fetch(config.Admin.Api.list_article,{
             method:'POST',
             body: JSON.stringify({
                 page: this.state.page,

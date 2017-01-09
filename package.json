@@ -8,7 +8,8 @@
     "deploy-dev-server": "webpack-dev-server --config webpack.config.dev.js --progress --colors",
     "deploy-server": "webpack -p --config webpack.config.js --progress --colors&&nodemon app.js",
     "multiple-page-build": "webpack --config webpack.config.dev.multiplepage.js --progress --color",
-    "multiple-page-dev": "node ./appMultiplePage.js"
+    "multiple-page-dev": "node ./appMultiplePageDev.js",
+    "multiple-page-pro": "webpack -p --config webpack.config.pro.multiplepage.js&&node ./appMultiplePagePro.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,6 @@
     "amazeui-react": "^1.2.3",
     "classnames": "^2.2.5",
     "express": "^4.14.0",
-    "lodash": "^4.16.4",
     "marked": "^0.3.6",
     "path": "^0.12.7",
     "react": "^15.3.1",

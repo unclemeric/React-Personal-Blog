@@ -25,10 +25,16 @@ module.exports = {
             path:'/admin'
         }
 	],
-	AdminApi:{
-		publish_article:`${apiPrefix}/article/put`,
-		list_article:`${apiPrefix}/article`,
-        edit_article:`${apiPrefix}/article/edit`,
-        delete_article:`${apiPrefix}/article/delete`,
+	Admin:{
+        Api:{
+            publish_article:`${apiPrefix}/article/put`,
+            list_article:`${apiPrefix}/article`,
+            edit_article:`${apiPrefix}/article/edit`,
+            delete_article:`${apiPrefix}/article/delete`,
+		},
+		AdminMenu:[
+
+		]
+
 	}
 }

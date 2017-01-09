@@ -29,7 +29,7 @@ class PublishArticle extends Component {
          * 如果当前是编辑操作
          */
         if (this.props.isEdit) {
-            fetch(`http://localhost:3000/admin/article/${this.props.articleId}`, {type: 'get'})
+            fetch(`${config.Admin.Api.list_article}/${this.props.articleId}`, {type: 'get'})
                 .then((response) => {
                     return response.json();
                 }).then((rtn) => {
@@ -103,7 +103,7 @@ class PublishArticle extends Component {
             origin: this.state.origin_content
         };
         if(this.props.isEdit) formData.id = this.state.id;
-        fetch(this.props.isEdit ? config.AdminApi.edit_article : config.AdminApi.publish_article, {
+        fetch(this.props.isEdit ? config.Admin.Api.edit_article : config.Admin.Api.publish_article, {
             method: 'POST',
             body: JSON.stringify(formData)
         })
