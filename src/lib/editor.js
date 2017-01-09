@@ -26,12 +26,13 @@ const MdEditor = React.createClass({
   },
   componentWillReceiveProps:function(nextProps,nextState){
       /**
-       * 第一次传进来的是默认空的 第二次才是有值，第二次之后将不再更新编辑器的内容
+       * 编辑的时候把markdown语句传进来
        */
-      if(this.defaultFlagNumber<2){
-          if(nextProps.content!=this.state.content){
+      debugger;
+      if(this.defaultFlagNumber==0){
+          if(nextProps.content!=this.state.result){
               this.setState({
-                  result: marked(nextProps.content || ''),
+                  result: marked(nextProps.originSource || ''),
               });
           }
           this.textControl.value = nextProps.originSource;
