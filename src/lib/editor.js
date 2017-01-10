@@ -28,7 +28,6 @@ const MdEditor = React.createClass({
       /**
        * 编辑的时候把markdown语句传进来
        */
-      debugger;
       if(this.defaultFlagNumber==0){
           if(nextProps.content!=this.state.result){
               this.setState({
