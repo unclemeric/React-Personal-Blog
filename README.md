@@ -1,5 +1,5 @@
 # React-Personal-Blog
-用react写的个人博客
+用react写的个人博客，需要用接口部分请结合[接口API项目](https://github.com/unclemeric/BlogAPI)使用
 
 ##目录
 ```
