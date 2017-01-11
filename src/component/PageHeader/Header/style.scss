@@ -3,6 +3,13 @@
 .header {
   padding: 2em 0;
   border-bottom: 1px solid #6f879a;
+  width: 100%;
+}
+.header-fixed{
+   position: fixed;
+   width: 100%;
+   top: -165px;
+   z-index: 1;
 }
 
 .logo {

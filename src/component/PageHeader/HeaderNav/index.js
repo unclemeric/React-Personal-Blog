@@ -27,7 +27,7 @@ class HeaderNav extends React.Component {
                         NavDatas.map((item, i) => {
                             return (
                                 <li key={i}>
-                                    <Link to={item.href} activeStyle={{ color: '#fff' }} onlyActiveOnIndex>{item.text}</Link>
+                                    <Link onClick={this.props.onScrollTop} to={item.href} activeStyle={{ color: '#fff' }} onlyActiveOnIndex>{item.text}</Link>
                                 </li>
                             );
                         })

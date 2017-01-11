@@ -1,8 +1,9 @@
 @import url('../../static/css/base.scss');
 
 .banner {
-  background: #556a7f;
+  background: #444;
   min-width: 1100px;
+  transition: all .3s ease-in-out;
   @media (min-width: 1200px) {
     .container {
       width: 1170px;
