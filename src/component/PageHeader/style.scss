@@ -4,6 +4,7 @@
   background: #444;
   min-width: 1100px;
   transition: all .3s ease-in-out;
+  z-index: 1000;
   @media (min-width: 1200px) {
     .container {
       width: 1170px;

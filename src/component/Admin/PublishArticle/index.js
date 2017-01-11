@@ -135,6 +135,10 @@ class PublishArticle extends Component {
                 <div className="container" style={{paddingBottom: '20px',width: '100rem', maxWidth: '1600px'}} >
                     <Editor content={this.state.content || ""} originSource={this.state.defaultOriginContent||""} getValue={this.getContentResult||null} />
                 </div>
+                <div className={classNames("editor-group",this.props.isEdit?"active":"")} style={{paddingBottom: 0}}>
+                    <span> 验证码 </span>
+                    <img src={`${config.Admin.Api.apiPrefix}captcha`} />
+                </div>
                 <div className="editor-group" style={{paddingBottom: 0}}>
                     <Button amStyle="primary" onClick={this.doSubmit}
                             style={{paddingLeft: '30px', paddingRight: '30px'}}>提交</Button>

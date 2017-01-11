@@ -1,13 +1,13 @@
 /**
  * Created by Meric on 2016/10/24.
  */
-const apiPrefix = "http://127.0.0.1:3000/admin";
+const apiPrefix = "http://127.0.0.1:3000/";
 module.exports = {
 	port: 80,
 	staticPath: './build',
 	projectConf:[
 		{
-			title:'Meric的博客',
+			title:'Web Note',
 			filename:'home.html',
 			entryPath:'./src/index.js',
 			path:'/'
@@ -19,7 +19,7 @@ module.exports = {
 			path:'/markdown'
 		},
         {
-            title:'Blog后台管理',
+            title:'后台管理',
             filename:'admin-index.html',
             entryPath:'./src/admin-index.js',
             path:'/admin'
@@ -27,10 +27,11 @@ module.exports = {
 	],
 	Admin:{
         Api:{
-            publish_article:`${apiPrefix}/article/put`,
-            list_article:`${apiPrefix}/article`,
-            edit_article:`${apiPrefix}/article/edit`,
-            delete_article:`${apiPrefix}/article/delete`,
+        	apiPrefix: apiPrefix,
+            publish_article:`${apiPrefix}admin/article/put`,
+            list_article:`${apiPrefix}admin/article`,
+            edit_article:`${apiPrefix}admin/article/edit`,
+            delete_article:`${apiPrefix}admin/article/delete`,
 		},
 		AdminMenu:[
 
